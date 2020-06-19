@@ -10,11 +10,23 @@ import android.widget.TextView;
 
 public class FunFactsActivity extends Activity {
 
+    private static final String KEY_FACT = "KEY_FACT";
+    private static final String KEY_COLOR = "KEY_COLOR";
     private TextView mFactLabel;
     private Button mShowFactButton;
     private RelativeLayout mRelativeLayout;
     private FactBook mFactBook = new FactBook();
     private ColorWheel mColorWheel = new ColorWheel();
+    private String mFact;
+    private int mColor;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        
+        outState.putString(KEY_FACT, mFact);
+        outState.putInt(KEY_COLOR, mColor);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +41,10 @@ public class FunFactsActivity extends Activity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fact = mFactBook.getFact();
+                mFact = mFactBook.getFact();
                 mFactLabel.setText(fact);
 
-                int color = mColorWheel.getColor();
+                mColor = mColorWheel.getColor();
                 mRelativeLayout.setBackgroundColor(color);
                 mShowFactButton.setTextColor(color);
             }

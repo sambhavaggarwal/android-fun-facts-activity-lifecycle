@@ -1,6 +1,7 @@
 package com.teamtreehouse.funfacts;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +18,8 @@ public class FunFactsActivity extends Activity {
     private RelativeLayout mRelativeLayout;
     private FactBook mFactBook = new FactBook();
     private ColorWheel mColorWheel = new ColorWheel();
-    private String mFact;
-    private int mColor;
+    private String mFact = mFactBook.mFacts[0];
+    private int mColor = Color.parseColor(mColorWheel.mColors[8]);
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
